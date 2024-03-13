@@ -1,8 +1,9 @@
-import { Logo } from '@/components/logo';
-import { Button } from '@/components/ui/button';
-import { OrganizationSwitcher, UserButton } from '@clerk/nextjs';
-import { Plus } from 'lucide-react';
-import MobileSidebar from './mobile-sidebar';
+import { Logo } from "@/components/logo";
+import { Button } from "@/components/ui/button";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import { Plus } from "lucide-react";
+import MobileSidebar from "./mobile-sidebar";
+import { FormPopover } from "@/components/form/form-popover";
 
 export default function Navbar() {
   return (
@@ -12,33 +13,41 @@ export default function Navbar() {
         <div className="hidden md:flex">
           <Logo />
         </div>
-        <Button
-          variant={'primary'}
-          size={'sm'}
-          className="rounded-md hidden md:block h-auto py-1.5 px-4"
+        <FormPopover
+          align="start"
+          side="bottom"
+          sideOffset={10}
         >
-          Create
-        </Button>
-        <Button
-          variant={'primary'}
-          size={'sm'}
-          className="rounded-md block md:hidden"
-        >
-          <Plus className="h-4 w-4" />
-        </Button>
+          <Button
+            variant={"primary"}
+            size={"sm"}
+            className="rounded-md hidden md:block h-auto py-1.5 px-4"
+          >
+            Create
+          </Button>
+        </FormPopover>
+        <FormPopover>
+          <Button
+            variant={"primary"}
+            size={"sm"}
+            className="rounded-md block md:hidden"
+          >
+            <Plus className="h-4 w-4" />
+          </Button>
+        </FormPopover>
       </div>
       <div className="ml-auto flex items-center gap-x-2">
         <OrganizationSwitcher
           hidePersonal
-          afterCreateOrganizationUrl={'/organization/:id'}
-          afterLeaveOrganizationUrl={'/select-org'}
-          afterSelectOrganizationUrl={'/organization/:id'}
+          afterCreateOrganizationUrl={"/organization/:id"}
+          afterLeaveOrganizationUrl={"/select-org"}
+          afterSelectOrganizationUrl={"/organization/:id"}
           appearance={{
             elements: {
               rootBox: {
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               },
             },
           }}
