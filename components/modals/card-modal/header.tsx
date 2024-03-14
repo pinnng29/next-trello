@@ -22,7 +22,10 @@ export const Header = ({ data }: HeaderProps) => {
   const { execute } = useAction(updateCard, {
     onSuccess(data) {
       queryClient.invalidateQueries({
-        queryKey: ["cards", data.id],
+        queryKey: ["card", data.id],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["card-log", data.id],
       });
       toast.success(`Renamed to "${data.title}"`);
       setTitle(data.title);
